@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isProyectile: 1
+  isProyectile2: 0
   isFlask: 0
-  knockbackX: 1
-  knockbackY: 4
+  knockbackX: 4
+  knockbackY: 7

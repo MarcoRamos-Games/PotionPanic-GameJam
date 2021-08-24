@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
        if(other.gameObject.tag == "Player" || other.gameObject.tag == "FriendlyProjectiles") { return; }
         if (isProyectile)
         {
-            if (other.gameObject.tag == "Enemy") {
+            if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "EnemyHead") {
                 if (isShotFromTheRight) {
                     other.GetComponent<Rigidbody>().velocity = new Vector2(knockbackX, knockbackY);
                     Destroy(gameObject);
@@ -40,12 +40,12 @@ public class Projectile : MonoBehaviour
         if (isFlask)
         {
             if(other.gameObject.tag == "EnemyProjectile") { return; }
-            if (other.gameObject.tag == "Enemy") {
+            if (other.gameObject.tag == "Enemy" ) {
                 Enemy enemyScript = other.GetComponent<Enemy>();
-                int randomEfect = Mathf.FloorToInt(Random.Range(1, 3));
+                int randomEfect = Mathf.FloorToInt(Random.Range(1, 4));
                 
 
-                switch (2)
+                switch (3)
             {
                     //Pocion para crear una torre de enemigos
                 case 1:
@@ -57,21 +57,23 @@ public class Projectile : MonoBehaviour
                 case 2:
                         if (other.GetComponent<Enemy>().isBig) 
                         {
-                            Destroy(other.gameObject);
+                            return;
                         } 
                     Vector3 scaleAugmentChange = new Vector3(2, 2, 2);
                      other.transform.localScale += scaleAugmentChange;
                         other.GetComponent<Enemy>().isBig = true;
-                break;
+                        Destroy(gameObject); Destroy(gameObject);
+                        break;
                 case 3:
                         if (other.GetComponent<Enemy>().isSmall)
                         {
-                            Destroy(other.gameObject);
+                            return;
                         }
                         
                     Vector3 scaleReduceChange = new Vector3(.5f, .5f, .5f);
                         other.transform.localScale -= scaleReduceChange;
                         other.GetComponent<Enemy>().isSmall = true;
+                        Destroy(gameObject);
                         break;
                 }
         }

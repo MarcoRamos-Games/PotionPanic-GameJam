@@ -16,7 +16,7 @@ public class EnemyProjectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "FriendlyProjectiles") { return; }
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "FriendlyProjectiles" || other.gameObject.tag == "EnemyHead") { return; }
         if (isSword)
         {
             if (other.gameObject.tag == "Player")

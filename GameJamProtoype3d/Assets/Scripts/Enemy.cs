@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public bool isBig = false;
     public bool isSmall = false;
-    [SerializeField]  bool isFacingRight;
+    [SerializeField]  public bool isFacingRight;
     [SerializeField] GameObject gunPoint;
     [SerializeField]  GameObject rightProjectile;
     [SerializeField] GameObject leftProjectile;
@@ -24,6 +24,13 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isFacingRight)
+        {
+            transform.eulerAngles = new Vector3(0, 270, 0);
+        }
+        else if (isFacingRight){
+            transform.eulerAngles = new Vector3(0, 90, 0);
+        }
         if (!Player.isGameOver)
         {
             if (canFire)
