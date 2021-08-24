@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
 
     [SerializeField] private bool isProyectile = false;
+    [SerializeField] private bool isProyectile2 = false;
     [SerializeField] private bool isFlask = false;
 
     [SerializeField] private float knockbackX = 1f;
@@ -15,7 +16,7 @@ public class Projectile : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(isShotFromTheRight);
+       
     }
     private void OnTriggerEnter(Collider other)
     {

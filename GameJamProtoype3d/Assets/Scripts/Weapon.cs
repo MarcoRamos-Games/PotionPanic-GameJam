@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [Header("Ability 1 Config")]
     [SerializeField] GameObject gunPoint;
+    [Header("Ability 1 Config")]
     [SerializeField] GameObject projectile1;
     [SerializeField] float ability1xForce;
     [SerializeField] float timeBetweenAbility1;
-    [SerializeField] int ability1ApCost;
-    [SerializeField] float ability1TimeCost;
+
     
     [Header("Ability 2 Config")]
-    [SerializeField] GameObject projectile2;
-    [SerializeField] float ability2YForce;
+    [SerializeField] GameObject projectile2Right;
+    [SerializeField] GameObject projectile2Left;
     [SerializeField] float ability2xForce;
     [SerializeField] float timeBetweenAbility2;
-    [SerializeField] int ability2ApCost;
-    [SerializeField] float ability2TimeCost;
+
+    [Header("RandomFlask")]
+    [SerializeField] GameObject[] flasks;
+    [SerializeField] float flaskYForce;
+    [SerializeField] float flaskXForce;
+    [SerializeField] float timeBetweenFlasks;
+
 
     Movement myMovement;
 
     bool canFire1 = true;
     bool canFire2 = true;
+    bool canShootFlask = true;
    
     // Start is called before the first frame update
     void Start()
@@ -38,6 +43,7 @@ public class Weapon : MonoBehaviour
         {
             Fire1();
             Fire2();
+            RandomFire();
         }
     }
 
@@ -70,30 +76,60 @@ public class Weapon : MonoBehaviour
             }
         }
     }
+
     public void Fire2()
     {
 
-        //if (Input.GetButtonDown("Fire2"))
-        
+        if (Input.GetButtonDown("Fire2"))
+        {
 
             if (canFire2)
             {
 
                 if (myMovement.isFacingRight)
                 {
-                    GameObject flask = Instantiate(projectile2, gunPoint.transform.position, gunPoint.transform.rotation) as GameObject;
-                    flask.GetComponent<Rigidbody>().velocity = new Vector2(ability2xForce, ability2YForce);
-                    
+                    GameObject knife = Instantiate(projectile2Right, gunPoint.transform.position, Quaternion.identity) as GameObject;
+                    knife.GetComponent<Rigidbody>().velocity = new Vector2(ability1xForce, 0);
+                    knife.GetComponent<Projectile>().SetIsShotFromTheRight(true);
+
                 }
                 else if (!myMovement.isFacingRight)
                 {
-                    GameObject flask = Instantiate(projectile2, gunPoint.transform.position, gunPoint.transform.rotation) as GameObject;
-                    flask.GetComponent<Rigidbody>().velocity = new Vector2(-ability2xForce, ability2YForce);
-                    
+                    GameObject knife = Instantiate(projectile2Left, gunPoint.transform.position, Quaternion.identity) as GameObject;
+                    knife.GetComponent<Rigidbody>().velocity = new Vector2(-ability1xForce, 0);
+                    knife.GetComponent<Projectile>().SetIsShotFromTheRight(false);
+
                 }
 
 
                 StartCoroutine(ShootProjectile2());
+            }
+        }
+    }
+    public void RandomFire()
+    {
+
+        //if (Input.GetButtonDown("Fire2"))
+        
+
+            if (canShootFlask)
+            {
+
+            if (myMovement.isFacingRight)
+            {
+                GameObject flask = Instantiate(flasks[Random.Range(0, flasks.Length)], gunPoint.transform.position, gunPoint.transform.rotation) as GameObject;
+                    flask.GetComponent<Rigidbody>().velocity = new Vector2(flaskXForce, flaskYForce);
+                    
+                }
+                else if (!myMovement.isFacingRight)
+                {
+                    GameObject flask = Instantiate(flasks[Random.Range(0, flasks.Length-1)], gunPoint.transform.position, gunPoint.transform.rotation) as GameObject;
+                    flask.GetComponent<Rigidbody>().velocity = new Vector2(-flaskXForce, flaskYForce);
+                    
+                }
+
+
+                StartCoroutine(ShootRanodmFlask());
             }
         
     }
@@ -104,12 +140,18 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenAbility1);
         canFire1 = true;
     }
-    
     IEnumerator ShootProjectile2()
     {
         canFire2 = false;
         yield return new WaitForSeconds(timeBetweenAbility2);
         canFire2 = true;
+    }
+
+    IEnumerator ShootRanodmFlask()
+    {
+        canShootFlask = false;
+        yield return new WaitForSeconds(timeBetweenFlasks);
+        canShootFlask = true;
     }
     
 
