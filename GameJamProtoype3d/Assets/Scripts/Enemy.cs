@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject leftProjectile;
     [SerializeField] float projectileSpeed;
     [SerializeField] float timeBetweenProjectile;
-
+    [SerializeField] Animator myAnimator;
     bool canFire = true;
    
     // Start is called before the first frame update
@@ -35,22 +35,33 @@ public class Enemy : MonoBehaviour
         {
             if (canFire)
             {
-                if (isFacingRight)
-                {
-                    GameObject sword = Instantiate(rightProjectile, gunPoint.transform.position, Quaternion.identity) as GameObject;
-                    sword.GetComponent<Rigidbody>().velocity = new Vector2(projectileSpeed, 0);
-
-
-                }
-                else
-                {
-                    GameObject sword = Instantiate(leftProjectile, gunPoint.transform.position, Quaternion.identity) as GameObject;
-                    sword.GetComponent<Rigidbody>().velocity = new Vector2(-projectileSpeed, 0);
-
-                }
+                myAnimator.SetTrigger("Attack");
+                StartCoroutine(ShootCorroutine());
                 StartCoroutine(ShootProjectile());
 
             }
+        }
+    }
+
+    IEnumerator  ShootCorroutine()
+    {
+        if (isFacingRight)
+        {
+            yield return new WaitForSeconds(.5f);
+            GameObject sword = Instantiate(rightProjectile, gunPoint.transform.position, Quaternion.identity) as GameObject;
+            sword.GetComponent<Rigidbody>().velocity = new Vector2(projectileSpeed, 0);
+           
+
+
+
+        }
+        else
+        {
+            yield return new WaitForSeconds(.5f);
+            GameObject sword = Instantiate(leftProjectile, gunPoint.transform.position, Quaternion.identity) as GameObject;
+            sword.GetComponent<Rigidbody>().velocity = new Vector2(-projectileSpeed, 0);
+           
+
         }
     }
 

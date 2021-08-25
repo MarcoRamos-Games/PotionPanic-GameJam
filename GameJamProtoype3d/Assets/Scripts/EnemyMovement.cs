@@ -13,6 +13,7 @@ public class EnemyMovement : MonoBehaviour
     [Header("EnemyConfiguration")]
     [SerializeField] float waitTime;
     [SerializeField] float moveTime;
+    [SerializeField] Animator myAnimator;
    
 
     //state
@@ -23,6 +24,7 @@ public class EnemyMovement : MonoBehaviour
     //cashed
     Rigidbody myRigidBody;
     Enemy myEnemy;
+  
    
    
 
@@ -34,6 +36,7 @@ public class EnemyMovement : MonoBehaviour
         leftPoint.parent = null;
         rightPoint.parent = null;
         moveCount = moveTime;
+        myAnimator.SetBool("isIdle", true);
     }
 
     // Update is called once per frame
@@ -45,7 +48,9 @@ public class EnemyMovement : MonoBehaviour
             {
                 moveCount -= Time.deltaTime;
                 MoveEnemy();
-                if (moveCount <= 0)
+                myAnimator.SetBool("isWalking", true);
+                myAnimator.SetBool("isIdle", false);
+            if (moveCount <= 0)
                 {
                     waitCount = Random.Range(waitTime * .75f, waitTime * 1.25f);
                 }
@@ -57,8 +62,9 @@ public class EnemyMovement : MonoBehaviour
             {
                 waitCount -= Time.deltaTime;
                 myRigidBody.velocity = new Vector2(0f, myRigidBody.velocity.y);
-
-                if (waitCount <= 0)
+                myAnimator.SetBool("isIdle", true);
+                myAnimator.SetBool("isWalking", false);
+            if (waitCount <= 0)
                 {
                     moveCount = Random.Range(moveTime * .75f, moveTime * 1.25f);
 
