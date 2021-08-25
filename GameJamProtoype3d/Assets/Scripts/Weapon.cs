@@ -44,6 +44,7 @@ public class Weapon : MonoBehaviour
             Fire1();
             Fire2();
             RandomFire();
+            
         }
     }
 
@@ -117,7 +118,7 @@ public class Weapon : MonoBehaviour
 
             if (myMovement.isFacingRight)
             {
-                GameObject flask = Instantiate(flasks[Random.Range(0, flasks.Length)], gunPoint.transform.position, gunPoint.transform.rotation) as GameObject;
+                GameObject flask = Instantiate(flasks[Random.Range(0, flasks.Length-1)], gunPoint.transform.position, gunPoint.transform.rotation) as GameObject;
                     flask.GetComponent<Rigidbody>().velocity = new Vector2(flaskXForce, flaskYForce);
                     
                 }
@@ -155,5 +156,9 @@ public class Weapon : MonoBehaviour
     }
     
 
+    public void SetTiemBetweenFlask(float timeBetween)
+    {
+        timeBetweenFlasks = timeBetween;
+    }
    
 }

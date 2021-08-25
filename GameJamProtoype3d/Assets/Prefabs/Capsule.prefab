@@ -130,4 +130,4 @@ MonoBehaviour:
   isProyectile2: 0
   isFlask: 0
   knockbackX: 4
-  knockbackY: 7
+  knockbackY: 4

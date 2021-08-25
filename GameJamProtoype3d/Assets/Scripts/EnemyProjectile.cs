@@ -8,6 +8,7 @@ public class EnemyProjectile : MonoBehaviour
     [SerializeField] private bool isSword = false;
     //[SerializeField] private bool isFlask = false;
     [SerializeField] private int swordDamage = 10;
+    [SerializeField] private int panicToAdd = 1;
 
     [SerializeField] private float knockbackX = 1f;
     [SerializeField] private float knockbackY = 1f;
@@ -22,6 +23,7 @@ public class EnemyProjectile : MonoBehaviour
             if (other.gameObject.tag == "Player")
             {
                 other.GetComponent<Player>().LooseHealth(swordDamage);
+                other.GetComponent<Player>().AddPanic(panicToAdd);
                 Destroy(gameObject);
             }
         

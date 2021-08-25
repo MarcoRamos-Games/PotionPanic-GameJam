@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8369840183540165037}
   - component: {fileID: 8369840183540165036}
   - component: {fileID: 6364696282069168819}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LeftSword
   m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
@@ -77,7 +77,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSword: 1
-  swordDamage: 25
+  swordDamage: 5
+  panicToAdd: 1
   knockbackX: 10
   knockbackY: 10
 --- !u!1 &8727981160502398317
@@ -91,7 +92,7 @@ GameObject:
   - component: {fileID: 6455910403328520544}
   - component: {fileID: 2487223756704047592}
   - component: {fileID: 1678275402868666541}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Espada_ZBrushPolyMesh3D_Espada_polySurface1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
