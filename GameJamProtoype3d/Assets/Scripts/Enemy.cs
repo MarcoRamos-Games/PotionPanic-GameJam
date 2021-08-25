@@ -8,8 +8,12 @@ public class Enemy : MonoBehaviour
     public bool isSmall = false;
     [SerializeField]  public bool isFacingRight;
     [SerializeField] GameObject gunPoint;
-    [SerializeField]  GameObject rightProjectile;
-    [SerializeField] GameObject leftProjectile;
+    [SerializeField]  GameObject rightSword;
+    [SerializeField] GameObject leftSword;
+    [SerializeField] GameObject leftMiniSword;
+    [SerializeField] GameObject rightMiniSword;
+    [SerializeField] GameObject leftBigSword;
+    [SerializeField] GameObject rightBigSword;
     [SerializeField] float projectileSpeed;
     [SerializeField] float timeBetweenProjectile;
     [SerializeField] Animator myAnimator;
@@ -47,9 +51,29 @@ public class Enemy : MonoBehaviour
     {
         if (isFacingRight)
         {
-            yield return new WaitForSeconds(.5f);
-            GameObject sword = Instantiate(rightProjectile, gunPoint.transform.position, Quaternion.identity) as GameObject;
-            sword.GetComponent<Rigidbody>().velocity = new Vector2(projectileSpeed, 0);
+
+            if (isBig) {
+                yield return new WaitForSeconds(.5f);
+                GameObject bigSword = Instantiate(rightBigSword, gunPoint.transform.position, Quaternion.identity) as GameObject;
+                bigSword.SetActive(true);
+                bigSword.GetComponent<Rigidbody>().velocity = new Vector2(projectileSpeed, 0);
+            }
+            else if (isSmall)
+            {
+                yield return new WaitForSeconds(.5f);
+                GameObject smallSword = Instantiate(rightMiniSword, gunPoint.transform.position, Quaternion.identity) as GameObject;
+                smallSword.SetActive(true);
+                smallSword.GetComponent<Rigidbody>().velocity = new Vector2(projectileSpeed, 0);
+            }
+
+            else
+            {
+                yield return new WaitForSeconds(.5f);
+                GameObject sword = Instantiate(rightSword, gunPoint.transform.position, Quaternion.identity) as GameObject;
+                sword.SetActive(true);
+                sword.GetComponent<Rigidbody>().velocity = new Vector2(projectileSpeed, 0);
+            }
+          
            
 
 
@@ -57,10 +81,29 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            yield return new WaitForSeconds(.5f);
-            GameObject sword = Instantiate(leftProjectile, gunPoint.transform.position, Quaternion.identity) as GameObject;
-            sword.GetComponent<Rigidbody>().velocity = new Vector2(-projectileSpeed, 0);
-           
+            if (isBig)
+            {
+                yield return new WaitForSeconds(.5f);
+                GameObject bigSword = Instantiate(leftBigSword, gunPoint.transform.position, Quaternion.identity) as GameObject;
+                bigSword.SetActive(true);
+                bigSword.GetComponent<Rigidbody>().velocity = new Vector2(-projectileSpeed, 0);
+            }
+            else if (isSmall)
+            {
+                yield return new WaitForSeconds(.5f);
+                GameObject smallSword = Instantiate(leftMiniSword, gunPoint.transform.position, Quaternion.identity) as GameObject;
+                smallSword.SetActive(true);
+                smallSword.GetComponent<Rigidbody>().velocity = new Vector2(-projectileSpeed, 0);
+            }
+
+            else
+            {
+                yield return new WaitForSeconds(.5f);
+                GameObject sword = Instantiate(leftSword, gunPoint.transform.position, Quaternion.identity) as GameObject;
+                sword.SetActive(true);
+                sword.GetComponent<Rigidbody>().velocity = new Vector2(-projectileSpeed, 0);
+            }
+
 
         }
     }

@@ -51,7 +51,7 @@ public class Projectile : MonoBehaviour
 
                 
 
-                switch (randomEfect)
+                switch (3)
             {
                     //Pocion para crear una torre de enemigos
                 case 1:
@@ -63,19 +63,23 @@ public class Projectile : MonoBehaviour
                         
                     break;
                 case 2:
-                        if (other.GetComponent<Enemy>().isBig) 
+                        if (other.GetComponent<Enemy>().isSmall || other.GetComponent<Enemy>().isBig) 
                         {
+                            TriggerDeathVFX();
+                            Destroy(gameObject); Destroy(gameObject);
                             return;
                         } 
-                    Vector3 scaleAugmentChange = new Vector3(2, 2, 2);
+                    Vector3 scaleAugmentChange = new Vector3(1, 1, 1);
                      other.transform.localScale += scaleAugmentChange;
                         other.GetComponent<Enemy>().isBig = true;
                         TriggerDeathVFX();
                         Destroy(gameObject); Destroy(gameObject);
                         break;
                 case 3:
-                        if (other.GetComponent<Enemy>().isSmall)
+                        if (other.GetComponent<Enemy>().isSmall ||other.GetComponent<Enemy>().isBig)
                         {
+                            TriggerDeathVFX();
+                            Destroy(gameObject); Destroy(gameObject);
                             return;
                         }
                         
