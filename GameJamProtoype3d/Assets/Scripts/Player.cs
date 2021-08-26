@@ -42,6 +42,24 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        if(currentPanic >= maxPanic)
+        {
+            currentPanic = maxPanic;
+        }
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+        }
+
+        if (currentPanic <= 0)
+        {
+            currentPanic = 0;
+        }
         ManagePanic();
         if(currentHealth <= 0)
         {
@@ -97,10 +115,23 @@ public class Player : MonoBehaviour
         healthBar.SetHealth(currentHealth);
         
     }
+    public void AddHealth(int healthToAdd)
+    {
+        currentHealth += healthToAdd;
+        healthBar.SetHealth(currentHealth);
+
+    }
 
     public void AddPanic(int panicToAdd)
     {
         currentPanic += panicToAdd;
+        panicBar.SetPanic(currentPanic);
+
+    }
+
+    public void ReducePanic(int panicToReduce)
+    {
+        currentPanic -= panicToReduce;
         panicBar.SetPanic(currentPanic);
 
     }

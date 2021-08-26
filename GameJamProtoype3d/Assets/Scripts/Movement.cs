@@ -12,9 +12,11 @@ public class Movement : MonoBehaviour
     [SerializeField] float jumpRemberedTime;
     float groundRembered;
     [SerializeField] float groundRemeberdTime;
+    [SerializeField] Animator myAnimator;
 
     //cashed
-    Rigidbody myRigidBody;   
+    Rigidbody myRigidBody;
+   
 
     //state
     bool isGrounded;
@@ -29,12 +31,21 @@ public class Movement : MonoBehaviour
     {
         isFacingRight = true;
         myRigidBody = GetComponent<Rigidbody>();
-       
+        myAnimator.SetBool("isIdle", true);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isGrounded)
+        {
+            myAnimator.SetBool("isJumping", true);
+        }
+        else
+        {
+            myAnimator.SetBool("isJumping", false);
+        }
         if (!Player.isGameOver)
         {
             Move();
@@ -71,7 +82,7 @@ public class Movement : MonoBehaviour
             jumpRembered = jumpRemberedTime;
             if (canDoubleJump)
             {
-                myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpForce);
+                JumpingAction();
 
                 canDoubleJump = false;
                 hasJumped = false;
@@ -79,9 +90,10 @@ public class Movement : MonoBehaviour
         }
         if ((jumpRembered > 0) && (groundRembered > 0))
         {
+
             jumpRembered = 0;
             groundRembered = 0;
-            myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpForce);
+            JumpingAction();
 
             hasJumped = true;
 
@@ -91,6 +103,15 @@ public class Movement : MonoBehaviour
             canDoubleJump = true;
         }
 
+    }
+
+    private void  JumpingAction()
+    {
+
+
+        myAnimator.SetTrigger("jump");
+
+        myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpForce);
     }
 
     public void FlipCharacter()

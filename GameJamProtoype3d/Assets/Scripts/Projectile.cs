@@ -51,7 +51,7 @@ public class Projectile : MonoBehaviour
 
                 
 
-                switch (3)
+                switch (randomEfect)
             {
                     //Pocion para crear una torre de enemigos
                 case 1:

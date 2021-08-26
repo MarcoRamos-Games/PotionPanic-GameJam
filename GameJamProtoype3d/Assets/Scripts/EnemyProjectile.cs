@@ -14,6 +14,11 @@ public class EnemyProjectile : MonoBehaviour
     [SerializeField] private float knockbackY = 1f;
 
 
+    [SerializeField] GameObject bloodVFX;
+    [SerializeField] float yPadding = 0.5f;
+     
+
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -24,11 +29,21 @@ public class EnemyProjectile : MonoBehaviour
             {
                 other.GetComponent<Player>().LooseHealth(swordDamage);
                 other.GetComponent<Player>().AddPanic(panicToAdd);
+                TriggerDeathVFX(other);
                 Destroy(gameObject);
             }
         
        
         }
         Destroy(gameObject);
+    }
+
+
+    private void TriggerDeathVFX(Collider other)
+    {
+        if (!bloodVFX) { return; }
+        GameObject deathVFXObject = Instantiate(bloodVFX, new Vector3(other.transform.position.x, other.transform.position.y + yPadding, other.transform.position.z), Quaternion.identity);
+        deathVFXObject.SetActive(true);
+        Destroy(deathVFXObject, 1f);
     }
 }
