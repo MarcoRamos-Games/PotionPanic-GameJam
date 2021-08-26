@@ -38,12 +38,14 @@ public class PlayerColisionHandler : MonoBehaviour
                 myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, bounceForce);
                 TriggerBigDeathVFX(other);
                 Destroy(other.gameObject.GetComponentInParent<Enemy>().gameObject);
+                GameSesion.enemyCounter -= 1;
             }
             else if (other.gameObject.GetComponentInParent<Enemy>().isSmall)
             {
                 myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, bounceForce);
                 TriggerSmallVFX(other);
                 Destroy(other.gameObject.GetComponentInParent<Enemy>().gameObject);
+                GameSesion.enemyCounter -= 1;
             }
 
             else
@@ -51,6 +53,7 @@ public class PlayerColisionHandler : MonoBehaviour
                 myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, bounceForce);
                 TriggerDeathVFX(other);
                 Destroy(other.gameObject.GetComponentInParent<Enemy>().gameObject);
+                GameSesion.enemyCounter -= 1;
             }
          
         }

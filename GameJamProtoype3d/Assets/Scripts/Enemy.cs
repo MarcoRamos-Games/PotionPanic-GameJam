@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    
     public bool isBig = false;
     public bool isSmall = false;
     [SerializeField]  public bool isFacingRight;
@@ -18,7 +19,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] float timeBetweenProjectile;
     [SerializeField] Animator myAnimator;
     bool canFire = true;
+
+    private void Awake()
+    {
    
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +33,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (!isFacingRight)
         {
             transform.eulerAngles = new Vector3(0, 270, 0);

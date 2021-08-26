@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8086738623201841491}
   - component: {fileID: 1524535582550929211}
   - component: {fileID: 3642284334659438111}
-  - component: {fileID: 139595874449677253}
   - component: {fileID: 2394267454044121046}
+  - component: {fileID: 6139220994929750079}
   m_Layer: 6
   m_Name: Flask1
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 929232907984240609}
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -12.385, y: 0.84, z: 0.04}
-  m_LocalScale: {x: 100, y: 99.999985, z: 25.869152}
+  m_LocalScale: {x: 150, y: 150, z: 37.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -100,19 +100,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!135 &139595874449677253
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 929232907984240609}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.0023451752
-  m_Center: {x: 0.00032837508, y: 0.0008864625, z: -0.0114465775}
 --- !u!114 &2394267454044121046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,17 +116,31 @@ MonoBehaviour:
   isProyectile2: 0
   isFlask: 1
   deathVFX:
-  - {fileID: 4609963690885085454, guid: 78e24f64e6ff32c43a49dd71f627d978, type: 3}
-  - {fileID: 8554723544465399132, guid: 6ba6fb769bfde5b45bf1f5c6973ee2a7, type: 3}
-  - {fileID: 2078758805922651064, guid: 89bf56953be9ebe42aa58c6e03c3b7bf, type: 3}
-  - {fileID: 6455138894396284282, guid: 74600c20c709ae94a89ec4fc796f582a, type: 3}
-  - {fileID: 6949296416936451559, guid: 514adf2bce2c30a4c8f109e15d035bf1, type: 3}
-  - {fileID: 230135004844523229, guid: d90b7f3c34328b540a82f58790578b6b, type: 3}
-  - {fileID: 1588067143848129135, guid: eef3914ee4be7534683ae28a108f45a2, type: 3}
-  - {fileID: 2519315740104956993, guid: 83f66576545630d4799f4e71d07707c7, type: 3}
-  - {fileID: 1484542528621990174, guid: 00b75520cdfda2943854069658024502, type: 3}
-  - {fileID: 4581238372587974250, guid: 478cdfc2e6b713a4bb8642282a9f9d3a, type: 3}
-  - {fileID: 3824247950581810577, guid: a749a10b13125b446bae320ef8eff163, type: 3}
+  - {fileID: 3912559230634101923, guid: 890fa896551de304ab26ffcd9225c9c3, type: 3}
+  - {fileID: 7676000206652582669, guid: be621b5b392c5e2478d4fe1df1699cf3, type: 3}
+  - {fileID: 6605404656014396112, guid: 9852b3eee6545df419ddb491912770d4, type: 3}
+  - {fileID: 6996764947850007389, guid: 479db257fa53f424aa52121b8c6cf754, type: 3}
+  - {fileID: 78979568936154406, guid: 0b6e30fdaa6beaf4a9c773524baa1bbb, type: 3}
+  - {fileID: 973649258031933297, guid: f25475d3d9fab544fb594bec021a41a1, type: 3}
+  - {fileID: 2985965319062728495, guid: d859191301c595546a7789f458f82ddf, type: 3}
+  - {fileID: 3058676823731617190, guid: bb31cdc3657436f4ea2e4c2f5650f0a8, type: 3}
+  - {fileID: 663421549984388754, guid: d8cf1a0066dd41c448ea58bf260a88f8, type: 3}
+  - {fileID: 5580187529730606995, guid: b7a2c210b5695674d896687b7d2ba82a, type: 3}
+  - {fileID: 8024071884498252906, guid: 8d0bb4a2b32a6414db466b8b3626384e, type: 3}
   yPadding: 0.5
   knockbackX: 1
   knockbackY: 4
+--- !u!136 &6139220994929750079
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929232907984240609}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.0021326034
+  m_Height: 0.03989924
+  m_Direction: 2
+  m_Center: {x: 0.00024918557, y: 0.00088646275, z: -0.010349559}

@@ -10,13 +10,14 @@ public class EnemyProjectile : MonoBehaviour
     [SerializeField] private int swordDamage = 10;
     [SerializeField] private int panicToAdd = 1;
 
-    [SerializeField] private float knockbackX = 1f;
-    [SerializeField] private float knockbackY = 1f;
+
 
 
     [SerializeField] GameObject bloodVFX;
     [SerializeField] float yPadding = 0.5f;
-     
+
+
+
 
 
     private void OnTriggerEnter(Collider other)
@@ -46,4 +47,6 @@ public class EnemyProjectile : MonoBehaviour
         deathVFXObject.SetActive(true);
         Destroy(deathVFXObject, 1f);
     }
+
+    
 }

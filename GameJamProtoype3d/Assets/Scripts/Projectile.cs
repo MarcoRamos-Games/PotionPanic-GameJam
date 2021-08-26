@@ -57,9 +57,21 @@ public class Projectile : MonoBehaviour
                 case 1:
 
                     GameObject enemy = other.gameObject;
-                    GameObject newEnemy = Instantiate(enemy,other.transform.position, other.transform.rotation) as GameObject;
-                        TriggerDeathVFX();
-                        Destroy(gameObject);
+                    if(GameSesion.enemyCounter>= GameSesion.maxEnemies)
+                        {
+                            TriggerDeathVFX();
+                            Destroy(gameObject); Destroy(gameObject);
+                            return;
+                        }
+                        else {
+
+                            GameObject newEnemy = Instantiate(enemy, other.transform.position, other.transform.rotation) as GameObject;
+
+                            GameSesion.enemyCounter += 1;
+                            TriggerDeathVFX();
+                            Destroy(gameObject);
+                        }
+                   
                         
                     break;
                 case 2:
@@ -107,6 +119,6 @@ public class Projectile : MonoBehaviour
     {
         if (deathVFX.Length == 0) { return; }
         GameObject deathVFXObject = Instantiate(deathVFX[Random.Range(0, deathVFX.Length - 1)], new Vector3(transform.position.x, transform.position.y + yPadding, transform.position.z), transform.rotation);
-        Destroy(deathVFXObject,1f);
+        Destroy(deathVFXObject,.3f);
     }
 }

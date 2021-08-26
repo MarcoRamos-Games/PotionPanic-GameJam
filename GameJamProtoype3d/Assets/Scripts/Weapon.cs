@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] GameObject gunPoint;
+    [SerializeField] Animator myAnimator;
     [Header("Ability 1 Config")]
     [SerializeField] GameObject projectile1;
     [SerializeField] float ability1xForce;
@@ -25,6 +26,7 @@ public class Weapon : MonoBehaviour
 
 
     Movement myMovement;
+    
 
     bool canFire1 = true;
     bool canFire2 = true;
@@ -112,27 +114,34 @@ public class Weapon : MonoBehaviour
 
         //if (Input.GetButtonDown("Fire2"))
         
-
+            
             if (canShootFlask)
-            {
+        {
+            myAnimator.SetTrigger("potion");
 
-            if (myMovement.isFacingRight)
-            {
-                GameObject flask = Instantiate(flasks[Random.Range(0, flasks.Length)], gunPoint.transform.position, gunPoint.transform.rotation) as GameObject;
-                    flask.GetComponent<Rigidbody>().velocity = new Vector2(flaskXForce, flaskYForce);
-                    
-                }
-                else if (!myMovement.isFacingRight)
-                {
-                    GameObject flask = Instantiate(flasks[Random.Range(0, flasks.Length)], gunPoint.transform.position, gunPoint.transform.rotation) as GameObject;
-                    flask.GetComponent<Rigidbody>().velocity = new Vector2(-flaskXForce, flaskYForce);
-                    
-                }
+            StartCoroutine( ThrowFlask());
 
+            StartCoroutine(ShootRanodmFlask());
+        }
 
-                StartCoroutine(ShootRanodmFlask());
-            }
-        
+    }
+
+    IEnumerator ThrowFlask()
+    {
+        if (myMovement.isFacingRight)
+        {
+            yield return new WaitForSeconds(.2f);
+            GameObject flask = Instantiate(flasks[Random.Range(0, flasks.Length)], gunPoint.transform.position, gunPoint.transform.rotation) as GameObject;
+            flask.GetComponent<Rigidbody>().velocity = new Vector2(flaskXForce, flaskYForce);
+
+        }
+        else if (!myMovement.isFacingRight)
+        {
+            yield return new WaitForSeconds(.2f);
+            GameObject flask = Instantiate(flasks[Random.Range(0, flasks.Length)], gunPoint.transform.position, gunPoint.transform.rotation) as GameObject;
+            flask.GetComponent<Rigidbody>().velocity = new Vector2(-flaskXForce, flaskYForce);
+
+        }
     }
 
     IEnumerator ShootProjectile1()
