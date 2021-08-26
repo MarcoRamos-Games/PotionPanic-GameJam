@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerColisionHandler : MonoBehaviour
+public class StompBox : MonoBehaviour
 {
     [SerializeField] int bounceForce = 5;
-    [Header ("EnemyDeathVFx")]
+    [Header("EnemyDeathVFx")]
     [SerializeField] GameObject enemyDeathVFX;
     [SerializeField] GameObject enemyBigDeathVFX;
     [SerializeField] GameObject enemySmallVFX;
+    [SerializeField] Animator myAnimator; 
 
 
-
-    Rigidbody myRigidBody;
+    [SerializeField] Rigidbody myRigidBody;
 
     // Start is called before the first frame update
     void Start()
     {
-        myRigidBody = GetComponent<Rigidbody>();
+       
       
     }
 
@@ -27,12 +27,12 @@ public class PlayerColisionHandler : MonoBehaviour
        
     }
 
-
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        
-        if(other.gameObject.tag == "EnemyHead")
+        Debug.Log(other.gameObject.name);
+        if (other.gameObject.tag == "EnemyHead")
         {
+            myAnimator.SetTrigger("jump");
             if (other.gameObject.GetComponentInParent<Enemy>().isBig)
             {
                 myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, bounceForce);
@@ -55,12 +55,12 @@ public class PlayerColisionHandler : MonoBehaviour
                 Destroy(other.gameObject.GetComponentInParent<Enemy>().gameObject);
                 GameSesion.enemyCounter -= 1;
             }
-         
+
         }
-       
     }
 
-    private void TriggerDeathVFX(Collision other)
+
+    private void TriggerDeathVFX(Collider other)
     {
         if (!enemyDeathVFX) { return; }
         GameObject deathVFXObject = Instantiate(enemyDeathVFX, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z), Quaternion.identity);
@@ -68,7 +68,7 @@ public class PlayerColisionHandler : MonoBehaviour
         Destroy(deathVFXObject, 1f);
     }
 
-    private void TriggerSmallVFX(Collision other)
+    private void TriggerSmallVFX(Collider other)
     {
         if (!enemyDeathVFX) { return; }
         GameObject deathVFXObject = Instantiate(enemySmallVFX, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z), Quaternion.identity);
@@ -77,7 +77,7 @@ public class PlayerColisionHandler : MonoBehaviour
     }
 
 
-    private void TriggerBigDeathVFX(Collision other)
+    private void TriggerBigDeathVFX(Collider other)
     {
         if (!enemyDeathVFX) { return; }
         GameObject deathVFXObject = Instantiate(enemyBigDeathVFX, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z), Quaternion.identity);

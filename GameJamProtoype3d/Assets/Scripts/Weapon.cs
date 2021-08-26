@@ -88,27 +88,34 @@ public class Weapon : MonoBehaviour
 
             if (canFire2)
             {
-
-                if (myMovement.isFacingRight)
-                {
-                    GameObject knife = Instantiate(projectile2Right, gunPoint.transform.position, Quaternion.identity) as GameObject;
-                    knife.GetComponent<Rigidbody>().velocity = new Vector2(ability1xForce, 0);
-                    knife.GetComponent<Projectile>().SetIsShotFromTheRight(true);
-
-                }
-                else if (!myMovement.isFacingRight)
-                {
-                    GameObject knife = Instantiate(projectile2Left, gunPoint.transform.position, Quaternion.identity) as GameObject;
-                    knife.GetComponent<Rigidbody>().velocity = new Vector2(-ability1xForce, 0);
-                    knife.GetComponent<Projectile>().SetIsShotFromTheRight(false);
-
-                }
-
+                myAnimator.SetTrigger("knifeThrow");
+               StartCoroutine( ThrowKnife());
 
                 StartCoroutine(ShootProjectile2());
             }
         }
     }
+
+    IEnumerator ThrowKnife()
+    {
+        if (myMovement.isFacingRight)
+        {
+            yield return new WaitForSeconds(.2f);
+            GameObject knife = Instantiate(projectile2Right, gunPoint.transform.position, Quaternion.identity) as GameObject;
+            knife.GetComponent<Rigidbody>().velocity = new Vector2(ability1xForce, 0);
+            knife.GetComponent<Projectile>().SetIsShotFromTheRight(true);
+
+        }
+        else if (!myMovement.isFacingRight)
+        {
+            yield return new WaitForSeconds(.2f);
+            GameObject knife = Instantiate(projectile2Left, gunPoint.transform.position, Quaternion.identity) as GameObject;
+            knife.GetComponent<Rigidbody>().velocity = new Vector2(-ability1xForce, 0);
+            knife.GetComponent<Projectile>().SetIsShotFromTheRight(false);
+
+        }
+    }
+
     public void RandomFire()
     {
 

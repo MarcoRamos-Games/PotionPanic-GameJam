@@ -85,16 +85,16 @@ public class EnemyMovement : MonoBehaviour
             myEnemy.isFacingRight = true;
            
 
-            if (transform.position.x > rightPoint.position.x)
+            if (transform.position.x > rightPoint.position.x)// || GetComponent<Enemy>().collideWithEnemy)
             {
                 movingRigth = false;
             }
         }
         else
         {
-            myRigidBody.velocity = new Vector2(-moveSpeed, myRigidBody.velocity.y);
+            myRigidBody.velocity = new Vector2(-moveSpeed, myRigidBody.velocity.y );
             myEnemy.isFacingRight = false;
-            if (transform.position.x < leftPoint.position.x)
+            if (transform.position.x < leftPoint.position.x) //|| GetComponent<Enemy>().collideWithEnemy)
             {
                 movingRigth = true;
             }

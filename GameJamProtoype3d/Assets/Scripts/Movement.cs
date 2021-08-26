@@ -41,10 +41,12 @@ public class Movement : MonoBehaviour
         if (!isGrounded)
         {
             myAnimator.SetBool("isJumping", true);
+            myAnimator.SetBool("isRunning", false);
         }
         else
         {
             myAnimator.SetBool("isJumping", false);
+           
         }
         if (!Player.isGameOver)
         {
@@ -59,7 +61,16 @@ public class Movement : MonoBehaviour
     //Gets the raw player input, and applies that to the player rigidbody velocity to make the player move
     private void Move()
     {
+        
         float movement = Input.GetAxisRaw("Horizontal");
+        if(movement != 0)
+        {
+            myAnimator.SetBool("isRunning", true);
+        }
+        else
+        {
+            myAnimator.SetBool("isRunning", false);
+        }
         Vector2 playerVelocity = new Vector2((movement * movementSpeed), myRigidBody.velocity.y);
         myRigidBody.velocity = playerVelocity;
     }

@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] float timeBetweenProjectile;
     [SerializeField] Animator myAnimator;
     bool canFire = true;
+    public bool collideWithEnemy;
+    bool hasntColllided;
 
     private void Awake()
     {
@@ -124,6 +126,31 @@ public class Enemy : MonoBehaviour
     public bool GetIsFacingRight()
     {
         return isFacingRight;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (!hasntColllided)
+        {
+            if (other.gameObject.tag == "Enemy")
+            {
+                collideWithEnemy = true;
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            StartCoroutine(WaitCorrutine());
+        }
+    }
+
+    IEnumerator WaitCorrutine()
+    {
+        yield return new WaitForSeconds(5f);
+        collideWithEnemy = false;
     }
 
 }
