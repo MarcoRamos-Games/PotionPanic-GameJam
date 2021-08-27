@@ -141,7 +141,7 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "Ground")
+        if (other.gameObject.tag == "Ground" )
         {
             isGrounded = true;
         }

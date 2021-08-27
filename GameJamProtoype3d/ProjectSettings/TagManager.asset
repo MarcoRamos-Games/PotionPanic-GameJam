@@ -9,6 +9,7 @@ TagManager:
   - FriendlyProjectiles
   - EnemyProjectile
   - EnemyHead
+  - Blocker
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - EnemyProjectiles
   - Pickup
   - PlayerFeet
-  - 
+  - Blocker
   - 
   - 
   - 

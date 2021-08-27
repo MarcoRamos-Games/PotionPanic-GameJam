@@ -56,7 +56,7 @@ public class Pickup : MonoBehaviour
         GameObject healthPickupEffectObject = Instantiate(healthPickupEffect, new Vector3(transform.position.x, transform.position.y , transform.position.z), transform.rotation);
         healthPickupEffectObject.SetActive(true);
 
-        Destroy(healthPickupEffectObject, 1f);
+        Destroy(healthPickupEffectObject, .6f);
     }private void TriggerPanicVFX()
     {
         if (!panicPickupEffect) { return; }

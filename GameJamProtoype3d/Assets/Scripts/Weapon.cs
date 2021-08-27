@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] GameObject gunPoint;
+    [SerializeField] GameObject shieldPoint;
     [SerializeField] Animator myAnimator;
     [Header("Ability 1 Config")]
     [SerializeField] GameObject projectile1;
@@ -61,16 +62,16 @@ public class Weapon : MonoBehaviour
                
                     if (myMovement.isFacingRight)
                     {
-                    GameObject flask = Instantiate(projectile1, gunPoint.transform.position, Quaternion.identity) as GameObject;
-                    flask.GetComponent<Rigidbody>().velocity = new Vector2(ability1xForce, 0);
-                    flask.GetComponent<Projectile>().SetIsShotFromTheRight(true);
+                    GameObject Shield = Instantiate(projectile1, shieldPoint.transform.position, Quaternion.identity) as GameObject;
+                    Shield.GetComponentInChildren<Rigidbody>().velocity = Vector2.zero;
+                  
                         
                     }
                     else if(!myMovement.isFacingRight)
                     {
-                    GameObject flask = Instantiate(projectile1, gunPoint.transform.position, Quaternion.identity) as GameObject;
-                    flask.GetComponent<Rigidbody>().velocity = new Vector2(-ability1xForce,  0);
-                    flask.GetComponent<Projectile>().SetIsShotFromTheRight(false);
+                    GameObject Shield = Instantiate(projectile1, shieldPoint.transform.position, Quaternion.identity) as GameObject;
+                    Shield.GetComponentInChildren<Rigidbody>().velocity = Vector2.zero;
+                    
 
                 }
                 

@@ -25,22 +25,10 @@ public class Projectile : MonoBehaviour
     {
         
        if(other.gameObject.tag == "Player" || other.gameObject.tag == "FriendlyProjectiles") { return; }
+
         if (isProyectile)
         {
-            if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "EnemyHead") {
-                if (isShotFromTheRight) {
-                    other.GetComponent<Rigidbody>().velocity = new Vector2(knockbackX, knockbackY);
-                    
-                  
-                    
-                }
-                else if(!isShotFromTheRight){
-                    other.GetComponent<Rigidbody>().velocity = new Vector2(-knockbackX, knockbackY);
-                    
-                }
-
-              
-        }
+            return;
         }
         if (isFlask)
         {
