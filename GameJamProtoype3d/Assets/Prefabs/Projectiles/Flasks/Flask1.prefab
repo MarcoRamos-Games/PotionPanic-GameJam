@@ -112,9 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442abeb7352a4bd4584568b56fd84689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isProyectile: 0
-  isProyectile2: 0
-  isFlask: 1
   deathVFX:
   - {fileID: 3912559230634101923, guid: 890fa896551de304ab26ffcd9225c9c3, type: 3}
   - {fileID: 7676000206652582669, guid: be621b5b392c5e2478d4fe1df1699cf3, type: 3}
@@ -128,8 +125,7 @@ MonoBehaviour:
   - {fileID: 5580187529730606995, guid: b7a2c210b5695674d896687b7d2ba82a, type: 3}
   - {fileID: 8024071884498252906, guid: 8d0bb4a2b32a6414db466b8b3626384e, type: 3}
   yPadding: 0.5
-  knockbackX: 1
-  knockbackY: 4
+  enemy: {fileID: 3742063105794686300, guid: 119623474fcfa1244af6c8d7525c06bf, type: 3}
 --- !u!136 &6139220994929750079
 CapsuleCollider:
   m_ObjectHideFlags: 0

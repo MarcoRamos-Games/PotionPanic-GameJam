@@ -14,15 +14,19 @@ public class Movement : MonoBehaviour
     [SerializeField] float groundRemeberdTime;
     [SerializeField] Animator myAnimator;
 
+    [SerializeField] float knockbackXForce;
+    [SerializeField] float knockbackYForcce;
+
     //cashed
     Rigidbody myRigidBody;
    
-
+    
     //state
     bool isGrounded;
     bool hasJumped = false;
     bool canDoubleJump = false;
     public bool isFacingRight = true;
+    bool isStunned = false;
 
 
     
@@ -48,7 +52,7 @@ public class Movement : MonoBehaviour
             myAnimator.SetBool("isJumping", false);
            
         }
-        if (!Player.isGameOver)
+        if (!Player.isGameOver && !isStunned)
         {
             Move();
             Jump();
@@ -139,6 +143,34 @@ public class Movement : MonoBehaviour
         }
     }
 
+    public void Knockback()
+    {
+        StartCoroutine(knockbackCorroutine());
+    }
+
+    IEnumerator knockbackCorroutine()
+    {
+        if (isFacingRight)
+        {
+            isStunned = true;
+            myRigidBody.velocity = Vector3.zero;
+            myRigidBody.velocity = new Vector3(-knockbackXForce, knockbackYForcce, 0);
+            
+            yield return new WaitForSeconds(.5f);
+            isStunned = false;
+
+        }
+        else if (!isFacingRight)
+        {
+            isStunned = true;
+            myRigidBody.velocity = Vector3.zero;
+            myRigidBody.velocity = new Vector3(knockbackXForce, knockbackYForcce, 0);
+            yield return new WaitForSeconds(.5f);
+            isStunned = false;
+
+        }
+
+    }
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Ground" )

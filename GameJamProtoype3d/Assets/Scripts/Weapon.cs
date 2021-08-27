@@ -104,7 +104,7 @@ public class Weapon : MonoBehaviour
             yield return new WaitForSeconds(.2f);
             GameObject knife = Instantiate(projectile2Right, gunPoint.transform.position, Quaternion.identity) as GameObject;
             knife.GetComponent<Rigidbody>().velocity = new Vector2(ability1xForce, 0);
-            knife.GetComponent<Projectile>().SetIsShotFromTheRight(true);
+            //knife.GetComponent<Projectile>().SetIsShotFromTheRight(true);
 
         }
         else if (!myMovement.isFacingRight)
@@ -112,7 +112,7 @@ public class Weapon : MonoBehaviour
             yield return new WaitForSeconds(.2f);
             GameObject knife = Instantiate(projectile2Left, gunPoint.transform.position, Quaternion.identity) as GameObject;
             knife.GetComponent<Rigidbody>().velocity = new Vector2(-ability1xForce, 0);
-            knife.GetComponent<Projectile>().SetIsShotFromTheRight(false);
+            //knife.GetComponent<Projectile>().SetIsShotFromTheRight(false);
 
         }
     }

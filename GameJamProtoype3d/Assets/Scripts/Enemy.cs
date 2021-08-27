@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     public bool collideWithEnemy;
     bool hasntColllided;
 
+    float attackAnimationTime = 1.1f;
+
     private void Awake()
     {
    
@@ -29,7 +31,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        myAnimator.SetFloat("timeBetweenProjectiles", attackAnimationTime);
     }
 
     // Update is called once per frame
@@ -116,6 +118,22 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public float GetTimeBetweenProjectile()
+    {
+        return timeBetweenProjectile;
+    }
+
+    public void SetTimeBetweenProjectile(float timeBetweenProjectiles)
+    {
+        timeBetweenProjectile = timeBetweenProjectiles;
+    }
+
+    public void ReduceTimeBetweenProjectile()
+    {
+        timeBetweenProjectile /= 2;
+        attackAnimationTime += .5f;
+        myAnimator.SetFloat("timeBetweenProjectiles", attackAnimationTime);
+    }
     IEnumerator ShootProjectile()
     {
         canFire = false;
@@ -152,5 +170,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(5f);
         collideWithEnemy = false;
     }
+
+
 
 }

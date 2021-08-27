@@ -31,6 +31,10 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int leftPointRandom = Random.Range(-30, -5);
+        leftPoint.position = new Vector3(leftPointRandom, leftPoint.position.y, leftPoint.position.z);
+        int rightPointRandom = Random.Range(5, 30);
+        rightPoint.position = new Vector3(rightPointRandom, rightPoint.position.y, rightPoint.position.z);
         myRigidBody = GetComponent<Rigidbody>();
         myEnemy = GetComponent<Enemy>();
         leftPoint.parent = null;
@@ -101,6 +105,22 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-   
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Debug.Log(other.gameObject.tag);
+        if (other.gameObject.gameObject.tag == "Wall" || other.gameObject.gameObject.tag == "Enemy")
+        {
+            if (movingRigth)
+            {
+                movingRigth = false;
+            }
+            else
+            {
+                movingRigth = true;
+            }
+        }
+    }
+
 
 }

@@ -10,6 +10,7 @@ TagManager:
   - EnemyProjectile
   - EnemyHead
   - Blocker
+  - Wall
   layers:
   - Default
   - TransparentFX

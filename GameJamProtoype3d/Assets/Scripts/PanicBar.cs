@@ -9,14 +9,14 @@ public class PanicBar : MonoBehaviour
     public Gradient gradient;
     [SerializeField] Image fill = null;
 
-    public void SetMaxPanic(int panic)
+    public void SetMaxPanic(float panic)
     {
         slider.maxValue = panic;
         slider.value = 1;
         gradient.Evaluate(1f);
         fill.color = gradient.Evaluate(0);
     }
-    public void SetPanic(int panic)
+    public void SetPanic(float panic)
     {
         slider.value = panic;
         fill.color = gradient.Evaluate(slider.normalizedValue);

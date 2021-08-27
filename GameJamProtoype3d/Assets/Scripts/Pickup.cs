@@ -8,7 +8,7 @@ public class Pickup : MonoBehaviour
 
     [SerializeField] bool isHealth; 
     [SerializeField] bool isPanicBack;
-    [SerializeField] int panicToTake;
+    [SerializeField] float panicToTake;
     [SerializeField] int healthToAdd;
 
 

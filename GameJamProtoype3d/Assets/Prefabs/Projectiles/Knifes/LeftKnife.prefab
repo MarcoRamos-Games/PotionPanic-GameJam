@@ -92,7 +92,6 @@ GameObject:
   - component: {fileID: 7725437449380049279}
   - component: {fileID: 417176652876009676}
   - component: {fileID: 417176652876009677}
-  - component: {fileID: 1578784662724574697}
   m_Layer: 6
   m_Name: LeftKnife
   m_TagString: EnemyProjectile
@@ -146,25 +145,6 @@ CapsuleCollider:
   m_Height: 3.25577
   m_Direction: 0
   m_Center: {x: -0.79, y: -0.66, z: -0.05}
---- !u!114 &1578784662724574697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6952876957494963141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 442abeb7352a4bd4584568b56fd84689, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isProyectile: 0
-  isProyectile2: 1
-  isFlask: 0
-  deathVFX: []
-  yPadding: 0
-  knockbackX: 1
-  knockbackY: 1
 --- !u!1001 &6462173579026237438
 PrefabInstance:
   m_ObjectHideFlags: 0

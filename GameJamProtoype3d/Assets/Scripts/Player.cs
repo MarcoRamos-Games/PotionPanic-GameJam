@@ -8,8 +8,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] int maxHealth = 100;
     [SerializeField] int currentHealth;
-    [SerializeField] int maxPanic = 10;
-    [SerializeField] int currentPanic;
+    [SerializeField] float maxPanic = 10;
+    [SerializeField] float currentPanic;
     [SerializeField] HealthBar healthBar;
     [SerializeField] PanicBar panicBar;
     [SerializeField] GameObject gameOverCanvas;
@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
         }
     }
   
-
+ 
     public void LooseHealth(int damage) 
     {
         currentHealth -= damage;
@@ -133,14 +133,14 @@ public class Player : MonoBehaviour
 
     }
 
-    public void AddPanic(int panicToAdd)
+    public void AddPanic(float panicToAdd)
     {
         currentPanic += panicToAdd;
         panicBar.SetPanic(currentPanic);
 
     }
 
-    public void ReducePanic(int panicToReduce)
+    public void ReducePanic(float panicToReduce)
     {
         currentPanic -= panicToReduce;
         panicBar.SetPanic(currentPanic);

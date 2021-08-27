@@ -2,20 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Flasks : MonoBehaviour
 {
 
-    [SerializeField] private bool isProyectile = false;
-    [SerializeField] private bool isProyectile2 = false;
-    [SerializeField] private bool isFlask = false;
+ 
     [SerializeField] private GameObject[] deathVFX;
     [SerializeField] private float yPadding;
 
-    [SerializeField] private float knockbackX = 1f;
-    [SerializeField] private float knockbackY = 1f;
+
+    [SerializeField] GameObject enemy;
 
 
-    bool isShotFromTheRight = false;
+    
 
     private void Start()
     {
@@ -26,12 +24,8 @@ public class Projectile : MonoBehaviour
         
        if(other.gameObject.tag == "Player" || other.gameObject.tag == "FriendlyProjectiles") { return; }
 
-        if (isProyectile)
-        {
-            return;
-        }
-        if (isFlask)
-        {
+        
+        
             if(other.gameObject.tag == "EnemyProjectile") { return; }
             if (other.gameObject.tag == "Enemy" ) {
                 Enemy enemyScript = other.GetComponent<Enemy>();
@@ -39,21 +33,22 @@ public class Projectile : MonoBehaviour
 
                 
 
-                switch (randomEfect)
+                switch (1)
             {
                     //Pocion para crear una torre de enemigos
                 case 1:
 
-                    GameObject enemy = other.gameObject;
+                    
+                    
                     if(GameSesion.enemyCounter>= GameSesion.maxEnemies)
                         {
                             TriggerDeathVFX();
-                            Destroy(gameObject); Destroy(gameObject);
+                            Destroy(gameObject); 
                             return;
                         }
                         else {
 
-                            GameObject newEnemy = Instantiate(enemy, other.transform.position, other.transform.rotation) as GameObject;
+                            GameObject newEnemy = Instantiate(enemy,new Vector3( other.transform.position.x , other.transform.position.y, other.transform.position.z), other.transform.rotation) as GameObject;
 
                             GameSesion.enemyCounter += 1;
                             TriggerDeathVFX();
@@ -63,7 +58,7 @@ public class Projectile : MonoBehaviour
                         
                     break;
                 case 2:
-                        if (other.GetComponent<Enemy>().isSmall || other.GetComponent<Enemy>().isBig) 
+                        if (enemyScript.isSmall || enemyScript.isBig) 
                         {
                             TriggerDeathVFX();
                             Destroy(gameObject); Destroy(gameObject);
@@ -76,7 +71,7 @@ public class Projectile : MonoBehaviour
                         Destroy(gameObject); Destroy(gameObject);
                         break;
                 case 3:
-                        if (other.GetComponent<Enemy>().isSmall ||other.GetComponent<Enemy>().isBig)
+                        if (enemyScript.isSmall || enemyScript.isBig)
                         {
                             TriggerDeathVFX();
                             Destroy(gameObject); Destroy(gameObject);
@@ -89,19 +84,28 @@ public class Projectile : MonoBehaviour
                         TriggerDeathVFX();
                         Destroy(gameObject);    
                         break;
+
+                    case 4:
+                        if (enemyScript.GetTimeBetweenProjectile() <= 0.5f)
+                        {
+                            enemyScript.SetTimeBetweenProjectile(0.5f);
+                        }
+                        else
+                        {
+                            enemyScript.ReduceTimeBetweenProjectile();
+                        }
+                        
+
+                        break;
                 }
-        }
+        
         }
         TriggerDeathVFX();
         Destroy(gameObject);
   
     }
 
-    public void SetIsShotFromTheRight(bool value)
-    {
-
-        isShotFromTheRight = value;
-    }
+ 
 
     private void TriggerDeathVFX()
     {
