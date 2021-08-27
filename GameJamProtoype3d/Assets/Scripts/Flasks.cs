@@ -33,7 +33,7 @@ public class Flasks : MonoBehaviour
 
                 
 
-                switch (1)
+                switch (randomEfect)
             {
                     //Pocion para crear una torre de enemigos
                 case 1:
@@ -43,8 +43,9 @@ public class Flasks : MonoBehaviour
                     if(GameSesion.enemyCounter>= GameSesion.maxEnemies)
                         {
                             TriggerDeathVFX();
-                            Destroy(gameObject); 
-                            return;
+                            Destroy(gameObject);
+                            
+                        return;
                         }
                         else {
 
@@ -53,7 +54,8 @@ public class Flasks : MonoBehaviour
                             GameSesion.enemyCounter += 1;
                             TriggerDeathVFX();
                             Destroy(gameObject);
-                        }
+                            
+                    }
                    
                         
                     break;
@@ -61,29 +63,36 @@ public class Flasks : MonoBehaviour
                         if (enemyScript.isSmall || enemyScript.isBig) 
                         {
                             TriggerDeathVFX();
-                            Destroy(gameObject); Destroy(gameObject);
-                            return;
+                            Destroy(gameObject);
+                        
+                        return;
                         } 
                     Vector3 scaleAugmentChange = new Vector3(1, 1, 1);
                      other.transform.localScale += scaleAugmentChange;
                         other.GetComponent<Enemy>().isBig = true;
+                    enemyScript.MultiplyHealth();
+                        
                         TriggerDeathVFX();
-                        Destroy(gameObject); Destroy(gameObject);
-                        break;
+                        Destroy(gameObject); 
+                   
+                    break;
                 case 3:
                         if (enemyScript.isSmall || enemyScript.isBig)
                         {
                             TriggerDeathVFX();
-                            Destroy(gameObject); Destroy(gameObject);
-                            return;
+                            Destroy(gameObject); 
+                        
+                        return;
                         }
                         
                     Vector3 scaleReduceChange = new Vector3(.5f, .5f, .5f);
                         other.transform.localScale -= scaleReduceChange;
                         other.GetComponent<Enemy>().isSmall = true;
+                    enemyScript.DivideHealth();
                         TriggerDeathVFX();
-                        Destroy(gameObject);    
-                        break;
+                        Destroy(gameObject);
+                    
+                    break;
 
                     case 4:
                         if (enemyScript.GetTimeBetweenProjectile() <= 0.5f)
@@ -102,7 +111,8 @@ public class Flasks : MonoBehaviour
         }
         TriggerDeathVFX();
         Destroy(gameObject);
-  
+        AudioManager.instance.PlaySFX(2);
+
     }
 
  

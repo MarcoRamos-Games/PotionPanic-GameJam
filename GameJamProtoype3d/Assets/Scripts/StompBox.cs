@@ -29,15 +29,18 @@ public class StompBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
+       
         if (other.gameObject.tag == "EnemyHead")
         {
+            //AudioManager.instance.PlaySFX(0);
             myAnimator.SetTrigger("jump");
             if (other.gameObject.GetComponentInParent<Enemy>().isBig)
             {
                 myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, bounceForce);
                 TriggerBigDeathVFX(other);
                 Destroy(other.gameObject.GetComponentInParent<Enemy>().gameObject);
+
+                AudioManager.instance.PlaySFX(5);
                 GameSesion.enemyCounter -= 1;
             }
             else if (other.gameObject.GetComponentInParent<Enemy>().isSmall)
@@ -45,6 +48,7 @@ public class StompBox : MonoBehaviour
                 myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, bounceForce);
                 TriggerSmallVFX(other);
                 Destroy(other.gameObject.GetComponentInParent<Enemy>().gameObject);
+                AudioManager.instance.PlaySFX(5);
                 GameSesion.enemyCounter -= 1;
             }
 
@@ -53,6 +57,7 @@ public class StompBox : MonoBehaviour
                 myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, bounceForce);
                 TriggerDeathVFX(other);
                 Destroy(other.gameObject.GetComponentInParent<Enemy>().gameObject);
+                AudioManager.instance.PlaySFX(5);
                 GameSesion.enemyCounter -= 1;
             }
 

@@ -28,6 +28,7 @@ public class EnemyProjectile : MonoBehaviour
         {
             if (other.gameObject.tag == "Player")
             {
+                AudioManager.instance.PlaySFX(1);
                 other.GetComponent<Player>().LooseHealth(swordDamage);
                 other.GetComponent<Player>().AddPanic(panicToAdd);
                 TriggerDeathVFX(other);

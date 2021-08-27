@@ -8,7 +8,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject shieldPoint;
     [SerializeField] Animator myAnimator;
     [Header("Ability 1 Config")]
-    [SerializeField] GameObject projectile1;
+    [SerializeField] GameObject projectile1Right;
+    [SerializeField] GameObject projectile1Left;
     [SerializeField] float ability1xForce;
     [SerializeField] float timeBetweenAbility1;
 
@@ -59,23 +60,12 @@ public class Weapon : MonoBehaviour
 
             if (canFire1)
             {
-               
-                    if (myMovement.isFacingRight)
-                    {
-                    GameObject Shield = Instantiate(projectile1, shieldPoint.transform.position, Quaternion.identity) as GameObject;
-                    Shield.GetComponentInChildren<Rigidbody>().velocity = Vector2.zero;
-                  
-                        
-                    }
-                    else if(!myMovement.isFacingRight)
-                    {
-                    GameObject Shield = Instantiate(projectile1, shieldPoint.transform.position, Quaternion.identity) as GameObject;
-                    Shield.GetComponentInChildren<Rigidbody>().velocity = Vector2.zero;
-                    
+                AudioManager.instance.PlaySFX(3);
+                myAnimator.SetTrigger("knifeThrow");
+                    StartCoroutine(ThrowKnife());
 
-                }
                 
-               
+            
                 StartCoroutine(ShootProjectile1());
             }
         }
@@ -86,14 +76,35 @@ public class Weapon : MonoBehaviour
 
         if (Input.GetButtonDown("Fire2"))
         {
-
             if (canFire2)
             {
+
+                AudioManager.instance.PlaySFX(7);
                 myAnimator.SetTrigger("knifeThrow");
-               StartCoroutine( ThrowKnife());
+               StartCoroutine( ThrowPowerKnife());
 
                 StartCoroutine(ShootProjectile2());
             }
+        }
+    }
+
+    IEnumerator ThrowPowerKnife()
+    {
+        if (myMovement.isFacingRight)
+        {
+            yield return new WaitForSeconds(.2f);
+            GameObject knife = Instantiate(projectile2Right, gunPoint.transform.position, Quaternion.identity) as GameObject;
+            knife.GetComponent<Rigidbody>().velocity = new Vector2(ability2xForce, 0);
+            //knife.GetComponent<Projectile>().SetIsShotFromTheRight(true);
+
+        }
+        else if (!myMovement.isFacingRight)
+        {
+            yield return new WaitForSeconds(.2f);
+            GameObject knife = Instantiate(projectile2Left, gunPoint.transform.position, Quaternion.identity) as GameObject;
+            knife.GetComponent<Rigidbody>().velocity = new Vector2(-ability2xForce, 0);
+            //knife.GetComponent<Projectile>().SetIsShotFromTheRight(false);
+
         }
     }
 
@@ -102,7 +113,7 @@ public class Weapon : MonoBehaviour
         if (myMovement.isFacingRight)
         {
             yield return new WaitForSeconds(.2f);
-            GameObject knife = Instantiate(projectile2Right, gunPoint.transform.position, Quaternion.identity) as GameObject;
+            GameObject knife = Instantiate(projectile1Right, gunPoint.transform.position, Quaternion.identity) as GameObject;
             knife.GetComponent<Rigidbody>().velocity = new Vector2(ability1xForce, 0);
             //knife.GetComponent<Projectile>().SetIsShotFromTheRight(true);
 
@@ -110,7 +121,7 @@ public class Weapon : MonoBehaviour
         else if (!myMovement.isFacingRight)
         {
             yield return new WaitForSeconds(.2f);
-            GameObject knife = Instantiate(projectile2Left, gunPoint.transform.position, Quaternion.identity) as GameObject;
+            GameObject knife = Instantiate(projectile1Left, gunPoint.transform.position, Quaternion.identity) as GameObject;
             knife.GetComponent<Rigidbody>().velocity = new Vector2(-ability1xForce, 0);
             //knife.GetComponent<Projectile>().SetIsShotFromTheRight(false);
 

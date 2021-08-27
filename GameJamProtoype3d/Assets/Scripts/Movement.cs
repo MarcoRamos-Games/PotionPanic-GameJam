@@ -125,7 +125,7 @@ public class Movement : MonoBehaviour
 
 
         myAnimator.SetTrigger("jump");
-
+        AudioManager.instance.PlaySFX(6);
         myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpForce);
     }
 
@@ -156,7 +156,7 @@ public class Movement : MonoBehaviour
             myRigidBody.velocity = Vector3.zero;
             myRigidBody.velocity = new Vector3(-knockbackXForce, knockbackYForcce, 0);
             
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.3f);
             isStunned = false;
 
         }
@@ -165,7 +165,7 @@ public class Movement : MonoBehaviour
             isStunned = true;
             myRigidBody.velocity = Vector3.zero;
             myRigidBody.velocity = new Vector3(knockbackXForce, knockbackYForcce, 0);
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.1f);
             isStunned = false;
 
         }

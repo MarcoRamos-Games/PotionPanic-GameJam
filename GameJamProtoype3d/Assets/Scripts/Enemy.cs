@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
     
     public bool isBig = false;
     public bool isSmall = false;
+    [SerializeField] int maxHealth = 100;
+    [SerializeField] int currentHealth;
     [SerializeField]  public bool isFacingRight;
     [SerializeField] GameObject gunPoint;
     [SerializeField]  GameObject rightSword;
@@ -18,6 +20,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float projectileSpeed;
     [SerializeField] float timeBetweenProjectile;
     [SerializeField] Animator myAnimator;
+    [SerializeField] GameObject enemyDeathVFX;
     bool canFire = true;
     public bool collideWithEnemy;
     bool hasntColllided;
@@ -31,6 +34,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
         myAnimator.SetFloat("timeBetweenProjectiles", attackAnimationTime);
     }
 
@@ -95,6 +99,7 @@ public class Enemy : MonoBehaviour
             {
                 yield return new WaitForSeconds(.5f);
                 GameObject bigSword = Instantiate(leftBigSword, gunPoint.transform.position, Quaternion.identity) as GameObject;
+                AudioManager.instance.PlaySFX(4);
                 bigSword.SetActive(true);
                 bigSword.GetComponent<Rigidbody>().velocity = new Vector2(-projectileSpeed, 0);
             }
@@ -102,7 +107,9 @@ public class Enemy : MonoBehaviour
             {
                 yield return new WaitForSeconds(.5f);
                 GameObject smallSword = Instantiate(leftMiniSword, gunPoint.transform.position, Quaternion.identity) as GameObject;
+                AudioManager.instance.PlaySFX(4);
                 smallSword.SetActive(true);
+
                 smallSword.GetComponent<Rigidbody>().velocity = new Vector2(-projectileSpeed, 0);
             }
 
@@ -110,6 +117,7 @@ public class Enemy : MonoBehaviour
             {
                 yield return new WaitForSeconds(.5f);
                 GameObject sword = Instantiate(leftSword, gunPoint.transform.position, Quaternion.identity) as GameObject;
+                AudioManager.instance.PlaySFX(4);
                 sword.SetActive(true);
                 sword.GetComponent<Rigidbody>().velocity = new Vector2(-projectileSpeed, 0);
             }
@@ -170,6 +178,50 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(5f);
         collideWithEnemy = false;
     }
+
+    public void LooseHealth(int damage)
+    {
+        if (currentHealth <= 0)
+        {
+            TriggerDeathVFX();
+            Destroy(gameObject);
+            GameSesion.enemyCounter -= 1;
+            AudioManager.instance.PlaySFX(5);
+        }
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            TriggerDeathVFX();
+            Destroy(gameObject);
+            GameSesion.enemyCounter -= 1;
+            AudioManager.instance.PlaySFX(5);
+        }
+       
+
+    }
+
+    public void MultiplyHealth()
+    {
+        currentHealth *= 2;
+
+
+    }
+
+    public void DivideHealth()
+    {
+        currentHealth /= 2;
+
+
+    }
+
+    private void TriggerDeathVFX()
+    {
+        if (!enemyDeathVFX) { return; }
+        GameObject deathVFXObject = Instantiate(enemyDeathVFX, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        deathVFXObject.SetActive(true);
+        Destroy(deathVFXObject, 1f);
+    }
+
 
 
 

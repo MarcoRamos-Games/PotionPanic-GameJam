@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
 
     public void ManagePanic()
     {
-        switch (currentPanic)
+        switch (Mathf.RoundToInt(currentPanic))
         {
             case 0:
                 myWeapon.SetTiemBetweenFlask(6);

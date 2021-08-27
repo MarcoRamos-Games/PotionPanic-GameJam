@@ -66,9 +66,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.6943366
-  m_Height: 3.6555314
+  m_Height: 3.0836751
   m_Direction: 1
-  m_Center: {x: 2.3796734e-16, y: 1.8125949, z: -0.07924545}
+  m_Center: {x: 2.3796734e-16, y: 1.5266668, z: -0.07924545}
 --- !u!114 &4552878914008822598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +83,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBig: 0
   isSmall: 0
+  maxHealth: 100
+  currentHealth: 0
   isFacingRight: 0
   gunPoint: {fileID: 4552878914557833425}
   rightSword: {fileID: 2331526975698435589, guid: 84746cd25b0812f4ab6b20fdeedbd256, type: 3}
@@ -94,6 +96,7 @@ MonoBehaviour:
   projectileSpeed: 15
   timeBetweenProjectile: 5
   myAnimator: {fileID: 4552878915404884590}
+  enemyDeathVFX: {fileID: 6238887937332523706, guid: 524b6d38414e2b74bb6b38e9a7a9850c, type: 3}
   collideWithEnemy: 0
 --- !u!114 &3742063105794686299
 MonoBehaviour:
@@ -232,11 +235,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4552878915435342034}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.8168328, z: 1.4950947}
-  m_Center: {x: -1.3428733e-16, y: 0.09158361, z: 0.1344496}
+  m_Size: {x: 1, y: 1.1638587, z: 1.9373994}
+  m_Center: {x: -1.5006976e-15, y: 0.26509655, z: 0.35560215}
 --- !u!54 &4552878915435342047
 Rigidbody:
   m_ObjectHideFlags: 0

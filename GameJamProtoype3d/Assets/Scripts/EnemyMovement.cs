@@ -108,7 +108,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.gameObject.tag);
+        
         if (other.gameObject.gameObject.tag == "Wall" || other.gameObject.gameObject.tag == "Enemy")
         {
             if (movingRigth)

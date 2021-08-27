@@ -15,7 +15,8 @@ public class PlayerCollision : MonoBehaviour
     {
         if(other.gameObject.tag == "Ground") { return; }
         
-        if (other.gameObject.tag =="Enemy"){ 
+        if (other.gameObject.tag =="Enemy"){
+            AudioManager.instance.PlaySFX(1);
             player.GetComponent<Movement>().Knockback();
             player.LooseHealth(damage);
 
