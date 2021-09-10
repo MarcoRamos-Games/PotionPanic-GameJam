@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] float flaskXForce;
     [SerializeField] float timeBetweenFlasks;
 
+    [SerializeField] Button swordButton;
+
 
     Movement myMovement;
     
@@ -48,6 +51,14 @@ public class Weapon : MonoBehaviour
             Fire1();
             Fire2();
             RandomFire();
+            if (canFire2)
+            {
+                swordButton.interactable = true;
+            }
+            else if (!canFire2)
+            {
+                swordButton.interactable = false;
+            }
             
         }
     }
@@ -78,6 +89,7 @@ public class Weapon : MonoBehaviour
         {
             if (canFire2)
             {
+                
 
                 AudioManager.instance.PlaySFX(7);
                 myAnimator.SetTrigger("knifeThrow");
@@ -85,6 +97,7 @@ public class Weapon : MonoBehaviour
 
                 StartCoroutine(ShootProjectile2());
             }
+           
         }
     }
 
@@ -171,6 +184,7 @@ public class Weapon : MonoBehaviour
     }
     IEnumerator ShootProjectile2()
     {
+
         canFire2 = false;
         yield return new WaitForSeconds(timeBetweenAbility2);
         canFire2 = true;

@@ -17,7 +17,10 @@ public class EnemyProjectile : MonoBehaviour
     [SerializeField] float yPadding = 0.5f;
 
 
-
+    private void Start()
+    {
+        Destroy(gameObject, 1.5f);
+    }
 
 
     private void OnTriggerEnter(Collider other)
@@ -28,7 +31,7 @@ public class EnemyProjectile : MonoBehaviour
         {
             if (other.gameObject.tag == "Player")
             {
-                AudioManager.instance.PlaySFX(1);
+                AudioManager.instance.PlaySFX(0);
                 other.GetComponent<Player>().LooseHealth(swordDamage);
                 other.GetComponent<Player>().AddPanic(panicToAdd);
                 TriggerDeathVFX(other);

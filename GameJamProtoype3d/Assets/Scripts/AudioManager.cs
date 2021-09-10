@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        DontDestroyOnLoad(this);
     }
     // Start is called before the first frame update
 
@@ -29,7 +30,6 @@ public class AudioManager : MonoBehaviour
     {
         //soundEffects[soundToPlay].gameObject.SetActive(true);
         soundEffects[soundToPlay].Stop();
-        //soundEffects[soundToPlay].pitch = Random.Range(.9f, 1.1f);
         soundEffects[soundToPlay].Play();
 
     }
@@ -39,6 +39,11 @@ public class AudioManager : MonoBehaviour
 
         menuMusic.Play();
 
+    }
+
+    public void ChangeMusicPitch(float  pitch)
+    {
+        backgroundMusic.pitch = pitch;
     }
    
     public void PlayBackgrounMusic()

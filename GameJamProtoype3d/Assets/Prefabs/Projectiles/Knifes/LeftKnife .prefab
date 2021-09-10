@@ -244,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isKnife: 1
   isPowerKnife: 0
-  knifeDamage: 15
-  enemyDeathVFX: {fileID: 6238887937332523706, guid: 524b6d38414e2b74bb6b38e9a7a9850c, type: 3}
-  enemyBigDeathVFX: {fileID: 342818710814793939, guid: 43241d1f097881844a825cbf11f655b7, type: 3}
-  enemySmallVFX: {fileID: 3700062708346010, guid: 8c2533f7db7b72d4a97130d8577d0755, type: 3}
+  knifeDamage: 25
+  enemyDeathVFX: {fileID: 0}
+  enemyBigDeathVFX: {fileID: 0}
+  enemySmallVFX: {fileID: 0}

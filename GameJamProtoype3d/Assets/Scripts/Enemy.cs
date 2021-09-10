@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     bool canFire = true;
     public bool collideWithEnemy;
     bool hasntColllided;
-
+    public bool isTutorialEnemy;
     float attackAnimationTime = 1.1f;
 
     private void Awake()
@@ -71,6 +71,7 @@ public class Enemy : MonoBehaviour
                 GameObject bigSword = Instantiate(rightBigSword, gunPoint.transform.position, Quaternion.identity) as GameObject;
                 bigSword.SetActive(true);
                 bigSword.GetComponent<Rigidbody>().velocity = new Vector2(projectileSpeed, 0);
+                
             }
             else if (isSmall)
             {
@@ -78,6 +79,7 @@ public class Enemy : MonoBehaviour
                 GameObject smallSword = Instantiate(rightMiniSword, gunPoint.transform.position, Quaternion.identity) as GameObject;
                 smallSword.SetActive(true);
                 smallSword.GetComponent<Rigidbody>().velocity = new Vector2(projectileSpeed, 0);
+                
             }
 
             else
@@ -86,6 +88,7 @@ public class Enemy : MonoBehaviour
                 GameObject sword = Instantiate(rightSword, gunPoint.transform.position, Quaternion.identity) as GameObject;
                 sword.SetActive(true);
                 sword.GetComponent<Rigidbody>().velocity = new Vector2(projectileSpeed, 0);
+                
             }
           
            

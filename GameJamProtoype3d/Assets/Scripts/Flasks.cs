@@ -11,6 +11,7 @@ public class Flasks : MonoBehaviour
 
 
     [SerializeField] GameObject enemy;
+   
 
 
     
@@ -21,17 +22,23 @@ public class Flasks : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+      
         
        if(other.gameObject.tag == "Player" || other.gameObject.tag == "FriendlyProjectiles") { return; }
 
-        
-        
-            if(other.gameObject.tag == "EnemyProjectile") { return; }
+       
+
+            if (other.gameObject.tag == "EnemyProjectile") { return; }
             if (other.gameObject.tag == "Enemy" ) {
                 Enemy enemyScript = other.GetComponent<Enemy>();
                 int randomEfect = Mathf.FloorToInt(Random.Range(1, 4));
 
-                
+            if (enemyScript.isTutorialEnemy)
+            {
+                TriggerDeathVFX();
+                Destroy(gameObject);
+                return;
+            }
 
                 switch (randomEfect)
             {
@@ -44,6 +51,7 @@ public class Flasks : MonoBehaviour
                         {
                             TriggerDeathVFX();
                             Destroy(gameObject);
+
                             
                         return;
                         }
@@ -107,8 +115,8 @@ public class Flasks : MonoBehaviour
 
                         break;
                 }
-        
         }
+        
         TriggerDeathVFX();
         Destroy(gameObject);
         AudioManager.instance.PlaySFX(2);

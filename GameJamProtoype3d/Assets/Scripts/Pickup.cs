@@ -34,6 +34,7 @@ public class Pickup : MonoBehaviour
             {
                 other.GetComponent<Player>().AddHealth(healthToAdd);
                 TriggerHealthVFX();
+                AudioManager.instance.PlaySFX(8);
                 Destroy(gameObject);
              
 
@@ -43,6 +44,7 @@ public class Pickup : MonoBehaviour
             {
                 other.GetComponent<Player>().ReducePanic(panicToTake);
                 TriggerPanicVFX();
+                AudioManager.instance.PlaySFX(9);
                 Destroy(gameObject);
                 
                 

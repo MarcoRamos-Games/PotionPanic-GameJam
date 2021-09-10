@@ -78,14 +78,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSword: 1
-  swordDamage: 5
+  swordDamage: 15
   panicToAdd: 1
-  knockbackX: 10
-  knockbackY: 10
   bloodVFX: {fileID: 6274378287200773491, guid: 855ae7d962ade4d4994a9f34e7ba0bbe, type: 3}
   yPadding: 0.5
-  duration: 0.4
-  magnitude: 0.9
 --- !u!1 &8300537774600953523
 GameObject:
   m_ObjectHideFlags: 0
